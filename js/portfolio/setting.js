@@ -1,45 +1,56 @@
-
 jQuery(document).ready(function($){
 
-if (jQuery().quicksand) {
+  if (jQuery().quicksand) {
 
- 	// Clone applications to get a second collection
-	var $data = $(".portfolio").clone();
-	
-	//NOTE: Only filter on the main portfolio page, not on the subcategory pages
-	$('.filter li').click(function(e) {
-		$(".filter li").removeClass("active");	
-		// Use the last category class as the category to filter by. This means that multiple categories are not supported (yet)
-		var filterClass=$(this).attr('class').split(' ').slice(-1)[0];
-		
-		if (filterClass == 'all') {
-			var $filteredData = $data.find('.item-thumbs');
-		} else {
-			var $filteredData = $data.find('.item-thumbs[data-type=' + filterClass + ']');
-		}
-		$(".portfolio").quicksand($filteredData, {
-			duration: 600,
-			adjustHeight: 'auto'
-		}, function () {
-		
-			// Portfolio fancybox
-		$(".fancybox").fancybox({				
-				padding : 0,
-				beforeShow: function () {
-					this.title = $(this.element).attr('title');
-					this.title = '<h4>' + this.title + '</h4>' + '<p>' + $(this.element).parent().find('img').attr('alt') + '</p>';
-				},
-				helpers : {
-					title : { type: 'inside' },
-				}
-			});
+    var $data = $(".portfolio").clone();
 
+    var selectedType = 'all';
+    var selectedBairro = 'all-bairro';
 
-		});	
-		$(this).addClass("active"); 			
-		return false;
-	});
-	
-}//if quicksand
+    // Função que filtra os dados combinando tipo e bairro
+    function filterItems() {
+      var $filteredData = $data.find('.item-thumbs');
+
+      if (selectedType !== 'all') {
+        $filteredData = $filteredData.filter('[data-type="' + selectedType + '"]');
+      }
+      if (selectedBairro !== 'all-bairro') {
+        $filteredData = $filteredData.filter('[data-bairro="' + selectedBairro + '"]');
+      }
+
+      $(".portfolio").quicksand($filteredData, {
+        duration: 600,
+        adjustHeight: 'auto'
+      }, function () {
+        $(".fancybox").fancybox({				
+          padding : 0,
+          beforeShow: function () {
+            this.title = $(this.element).attr('title');
+            this.title = '<h4>' + this.title + '</h4>' + '<p>' + $(this.element).parent().find('img').attr('alt') + '</p>';
+          },
+          helpers : { title : { type: 'inside' } }
+        });
+      });
+    }
+
+    // Filtra por tipo
+    $('.filter').eq(0).find('li').click(function(e) {
+      e.preventDefault();
+      $('.filter').eq(0).find('li').removeClass('active');
+      $(this).addClass('active');
+      selectedType = $(this).attr('class').split(' ')[0];
+      filterItems();
+    });
+
+    // Filtra por bairro
+    $('.filter').eq(1).find('li').click(function(e) {
+      e.preventDefault();
+      $('.filter').eq(1).find('li').removeClass('active');
+      $(this).addClass('active');
+      selectedBairro = $(this).attr('class').split(' ')[0];
+      filterItems();
+    });
+
+  }
 
 });
