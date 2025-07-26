@@ -36,7 +36,7 @@ h1,h2, h3, h4, h5, h6 {
 .container {
 	padding:0 20px 0 20px;
 	position:relative;
-	color: #fff;
+	color: #000;
 }
 
 #wrapper{
@@ -256,7 +256,7 @@ header ul.nav li ul li a {
 
 
 .navbar .nav > li > a {
-  color: #111;
+  color: #fcfcfc;
   text-shadow: none;
   border: 1px solid rgba(255, 255, 255, 0) !important;
 }
@@ -335,6 +335,9 @@ display: inline-block;
 	background: #fff; 
 	position: relative; 
 	zoom: 1;
+	height: 86vh;
+
+
 }
 .flex-direction-nav .flex-prev{
 left:0px; 

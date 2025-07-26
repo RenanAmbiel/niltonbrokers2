@@ -1,3 +1,4 @@
+Park City Multi-purpose Free Bootstrap Responsive Template
 Free Responsive HTML5 Template
 
 Park City Bootstrap HTML Real Estate Responsive Template is a well crafted flat modren website, with a multi-purpose usage, this is a clean web template built with valid HTML5 & CSS3. It's based on latest Bootstrap framework 3.3.1 fully responsive web compatible with multi browser and devices. This template can be used for multi-purpose needs like real estate, consultancy, housing agency, construction business, corporate website, portfolio, mobile website and start-up company.
